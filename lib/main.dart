@@ -11,7 +11,7 @@ void main() async {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Responsive Web and Mobile App",
-      initialRoute: AppPages.Splash,
+      initialRoute: AppPages.animationpage,
       getPages: AppPages.routes,
     ),
   );

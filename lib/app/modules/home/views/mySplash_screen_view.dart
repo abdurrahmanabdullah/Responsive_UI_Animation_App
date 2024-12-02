@@ -27,10 +27,10 @@ class _MysplashScreenViewState extends State<MysplashScreenView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/fruits.png'),
-            const Text(
-              "Title",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+            // const Text(
+            //   "Title",
+            //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            // ),
           ],
         ),
       ),
