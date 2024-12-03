@@ -2,25 +2,43 @@ name: ml_flutter_project
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: ^3.5.3
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.8
+  rive: ^0.13.20
+  image: ^4.3.0
 
   easy_splash_screen: ^1.0.4
   get: 4.6.6
-  flutter: 
+  flutter:
     sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^4.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/rive_app/images/backgrounds/spline.png
+    - assets/rive_app/rive/
+    - assets/rive_app/images/
+
+
+
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 900
 
 

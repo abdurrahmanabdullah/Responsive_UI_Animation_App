@@ -11,7 +11,7 @@ void main() async {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Responsive Web and Mobile App",
-      initialRoute: AppPages.animationpage,
+      initialRoute: AppPages.rive_animationpage,
       getPages: AppPages.routes,
     ),
   );
