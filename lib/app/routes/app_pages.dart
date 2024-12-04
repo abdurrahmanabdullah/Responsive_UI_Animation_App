@@ -9,6 +9,8 @@ import '../modules/animation_modules/views/animation_modules_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_page.dart';
 import '../modules/home/views/mySplash_screen_view.dart';
+import '../modules/side_menu_modules/bindings/side_menu_modules_binding.dart';
+import '../modules/side_menu_modules/views/side_menu_modules_view.dart';
 
 part 'app_routes.dart';
 
@@ -19,6 +21,7 @@ class AppPages {
   static const PlaceDetailsPage = Routes.PlaceDetailsPage;
   static const animationpage = Routes.animationpage;
   static const rive_animationpage = Routes.rive_animationpage;
+  static const SIDE_MENU_MODULES = Routes.SIDE_MENU_MODULES;
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -42,8 +45,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.rive_animationpage,
-      page: () =>  RiveAnimationModulesView(),
+      page: () => RiveAnimationModulesView(),
       binding: RiveAnimationModulesBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIDE_MENU_MODULES,
+      page: () => const SideMenuModulesView(),
+      binding: SideMenuModulesBinding(),
     ),
   ];
 }

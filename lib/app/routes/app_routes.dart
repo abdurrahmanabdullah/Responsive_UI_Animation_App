@@ -9,6 +9,7 @@ abstract class Routes {
   static const ANIMATION = _Paths.ANIMATION;
   static const animationpage = _Paths.animationpage;
   static const rive_animationpage = _Paths.rive_animationpage;
+  static const SIDE_MENU_MODULES = _Paths.SIDE_MENU_MODULES;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const ANIMATION = '/animation';
   static const animationpage = '/animationpage';
   static const rive_animationpage = '/rive-animation-modules';
+  static const SIDE_MENU_MODULES = '/side-menu-modules';
 }

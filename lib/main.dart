@@ -12,6 +12,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       title: "Responsive Web and Mobile App",
       initialRoute: AppPages.rive_animationpage,
+      // initialRoute: AppPages.SIDE_MENU_MODULES,
       getPages: AppPages.routes,
     ),
   );
