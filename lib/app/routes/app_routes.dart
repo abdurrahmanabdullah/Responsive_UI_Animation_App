@@ -10,6 +10,8 @@ abstract class Routes {
   static const animationpage = _Paths.animationpage;
   static const rive_animationpage = _Paths.rive_animationpage;
   static const SIDE_MENU_MODULES = _Paths.SIDE_MENU_MODULES;
+  static const BOTOMNAVIGATION = _Paths.BOTOMNAVIGATION;
+
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const animationpage = '/animationpage';
   static const rive_animationpage = '/rive-animation-modules';
   static const SIDE_MENU_MODULES = '/side-menu-modules';
+  static const BOTOMNAVIGATION = '/bottom-navigation';
+
 }

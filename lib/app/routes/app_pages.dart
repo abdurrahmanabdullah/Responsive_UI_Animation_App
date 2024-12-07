@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:ml_flutter_project/app/modules/rive_animation_modules/views/home_tab_view.dart';
+import 'package:ml_flutter_project/app/modules/rive_animation_modules/views/home_tab_view.dart';
+
+
 
 import '../modules/Rive_Animation_modules/bindings/rive_animation_modules_binding.dart';
 import '../modules/Rive_Animation_modules/views/rive_animation_modules_view.dart';
@@ -22,6 +26,8 @@ class AppPages {
   static const animationpage = Routes.animationpage;
   static const rive_animationpage = Routes.rive_animationpage;
   static const SIDE_MENU_MODULES = Routes.SIDE_MENU_MODULES;
+  static const BOTOMNAVIGATION = Routes.BOTOMNAVIGATION;
+
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -45,7 +51,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.rive_animationpage,
-      page: () => RiveAnimationModulesView(),
+      page: () => const RiveAnimationModulesView(),
       binding: RiveAnimationModulesBinding(),
     ),
     GetPage(
@@ -53,5 +59,12 @@ class AppPages {
       page: () => const SideMenuModulesView(),
       binding: SideMenuModulesBinding(),
     ),
+    GetPage(
+      name: _Paths.BOTOMNAVIGATION,
+      page: () => const HomeTabView(),
+      binding: SideMenuModulesBinding(),
+    ),
+
+
   ];
 }

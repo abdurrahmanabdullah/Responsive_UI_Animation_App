@@ -26,6 +26,7 @@ flutter:
     - assets/rive_app/images/backgrounds/spline.png
     - assets/rive_app/rive/
     - assets/rive_app/images/
+    - assets/rive_app/images/topics/
 
 
 
