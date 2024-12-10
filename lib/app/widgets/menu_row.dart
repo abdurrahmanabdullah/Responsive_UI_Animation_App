@@ -4,20 +4,40 @@ import 'package:ml_flutter_project/app/model/menu_item.dart';
 import 'package:rive/rive.dart';
 
 class MenuRow extends StatelessWidget {
-  const MenuRow({super.key, required this.menu,});
+  const MenuRow({
+    super.key,
+    required this.menu,
+    this.selectedMenu = "Home",
+    this.onMenuPress,
+  });
   final MenuItemModel menu;
+  final String selectedMenu;
+  final Function? onMenuPress;
+  void _onMenuIconInit(Artboard artboard) {
+    final controller = StateMachineController.fromArtboard(
+        artboard, menu.riveIcon.stateMachine);
+    artboard.addController(controller!);
+    menu.riveIcon.status = controller.findInput<bool>("active") as SMIBool;
+  }
 
+  void onMenuPressed() {
+    onMenuPress!();
 
-  void onMenuPressed() {}
+    menu.riveIcon.status!.change(true);
+    Future.delayed(const Duration(seconds: 1), () {
+      menu.riveIcon.status!.change(false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         AnimatedContainer(
-          // width: selectMenu ==menu.title?288 -16 :0,
+            width: selectedMenu == menu.title ? 288 - 16 : 0,
             height: 56,
-            // decoration: const BoxDecoration(color: Colors.blue),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: Colors.blue),
             duration: const Duration(milliseconds: 300)),
         CupertinoButton(
           pressedOpacity: 1,
@@ -33,6 +53,7 @@ class MenuRow extends StatelessWidget {
                     'assets/rive_app/rive/icons.riv',
                     stateMachines: [menu.riveIcon.stateMachine],
                     artboard: menu.riveIcon.artboard,
+                    onInit: _onMenuIconInit,
                   ),
                 ),
               ),
@@ -56,11 +77,19 @@ class MenuRow extends StatelessWidget {
     );
   }
 }
-class MenuButtonSection extends StatelessWidget {
-  const MenuButtonSection({super.key, required this.title, required this.menuIcons,});
-final String title;
 
-final List <MenuItemModel>menuIcons;
+class MenuButtonSection extends StatelessWidget {
+  const MenuButtonSection({
+    super.key,
+    required this.title,
+    required this.menuIcons,
+    this.onMenuPress,
+    this.selectedMenu = "Home",
+  });
+  final String selectedMenu;
+  final String title;
+  final Function(MenuItemModel menu)? onMenuPress;
+  final List<MenuItemModel> menuIcons;
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +97,10 @@ final List <MenuItemModel>menuIcons;
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 15,bottom: 8),
+          padding:
+              const EdgeInsets.only(left: 24, right: 24, top: 15, bottom: 8),
           child: Text(
-           title,
+            title,
             style: TextStyle(
                 color: Colors.white.withOpacity(0.7),
                 fontSize: 15,
@@ -79,12 +109,14 @@ final List <MenuItemModel>menuIcons;
                 fontWeight: FontWeight.w600),
           ),
         ),
-        for(var menu in menuIcons ) ...[///Dynamic list generation with a spread operator (when combined with ...).
+        for (var menu in menuIcons) ...[
+          ///Dynamic list generation with a spread operator (when combined with ...).
           Container(
             margin: const EdgeInsets.all(2),
             child: Column(
               children: [
-                Divider(color: Colors.white.withOpacity(0.1),
+                Divider(
+                  color: Colors.white.withOpacity(0.1),
                   thickness: 1,
                   height: 1,
                   indent: 16,
@@ -93,9 +125,13 @@ final List <MenuItemModel>menuIcons;
               ],
             ),
           ),
-          MenuRow(menu: menu,)]
+          MenuRow(
+            menu: menu,
+            selectedMenu: selectedMenu,
+            onMenuPress: () => onMenuPress!(menu),
+          )
+        ]
       ],
     );
   }
 }
-

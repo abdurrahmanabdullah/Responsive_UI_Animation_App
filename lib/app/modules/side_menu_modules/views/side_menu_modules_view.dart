@@ -22,7 +22,6 @@
 //     );
 //   }
 // }
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ml_flutter_project/app/model/menu_item.dart';
 import 'package:ml_flutter_project/app/share/theme.dart';
@@ -38,21 +37,24 @@ class SideMenuModulesView extends StatefulWidget {
 class _SideMenuModulesViewState extends State<SideMenuModulesView> {
   final List<MenuItemModel> _browseMenuIcons = MenuItemModel.menuItemList;
   final List<MenuItemModel> _historyMenuIcons = MenuItemModel.menuItems2;
-
-
-
+  late String _selectedMenu = MenuItemModel.menuItemList[0].title;
+  void _onMenuPress(MenuItemModel menu) {
+    setState(() {
+      _selectedMenu = menu.title;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         constraints: const BoxConstraints(maxWidth: 288),
         decoration: BoxDecoration(
           color: RiverAppTheme.background2,
           borderRadius: BorderRadius.circular(30),
         ),
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -100,16 +102,18 @@ class _SideMenuModulesViewState extends State<SideMenuModulesView> {
               height: 10,
             ),
             MenuButtonSection(
+              selectedMenu: _selectedMenu,
+              onMenuPress: _onMenuPress,
               title: 'BROWSE',
-
               menuIcons: _browseMenuIcons,
             ),
             const SizedBox(
               height: 10,
             ),
             MenuButtonSection(
+              selectedMenu: _selectedMenu,
+              onMenuPress: _onMenuPress,
               title: 'HISTORY',
-
               menuIcons: _historyMenuIcons,
             )
           ],
@@ -118,5 +122,3 @@ class _SideMenuModulesViewState extends State<SideMenuModulesView> {
     );
   }
 }
-
-
