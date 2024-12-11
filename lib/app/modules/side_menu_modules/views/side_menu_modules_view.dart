@@ -50,10 +50,16 @@ class _SideMenuModulesViewState extends State<SideMenuModulesView> {
       alignment: Alignment.centerLeft,
       child: Container(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        constraints: const BoxConstraints(maxWidth: 288),
-        decoration: BoxDecoration(
+        constraints: BoxConstraints(
+          maxWidth: 288,
+          maxHeight: MediaQuery.of(context).size.height,
+        ),
+        decoration: const BoxDecoration(
           color: RiverAppTheme.background2,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

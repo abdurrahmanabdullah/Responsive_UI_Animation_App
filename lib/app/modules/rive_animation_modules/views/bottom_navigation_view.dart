@@ -12,14 +12,15 @@ class CustomTabBar extends StatefulWidget {
 }
 
 class _CustomTabBarState extends State<CustomTabBar> {
-  int _selectedTab=0;
+  int _selectedTab = 0;
+
   ///trigger the animation
   SMIBool? status;
   final List<TapItemModel> icons = TapItemModel.tapItemList;
 
-  void _onRiveIconInit(Artboard artboard ,index) {
-    final controller =
-        StateMachineController.fromArtboard(artboard, icons[index].stateMachine);
+  void _onRiveIconInit(Artboard artboard, index) {
+    final controller = StateMachineController.fromArtboard(
+        artboard, icons[index].stateMachine);
     artboard.addController(controller!);
     icons[index].status = controller.findInput<bool>("active") as SMIBool;
 
@@ -28,11 +29,13 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
   void onTabPress(int index) {
     setState(() {
-      _selectedTab=index;
+      _selectedTab = index;
     });
     icons[index].status!.change(true);
-    Future.delayed(const Duration(seconds: 1),(){
-      icons[index].status?.change(false); /// tell compiler ! u can sure that value is not null
+    Future.delayed(const Duration(seconds: 1), () {
+      icons[index].status?.change(false);
+
+      /// tell compiler ! u can sure that value is not null
       /// The ?. operator will only execute the method or access the property if the value is not null
     });
   }
@@ -75,9 +78,11 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
                       return CupertinoButton(
                         padding: const EdgeInsets.all(12),
-                        onPressed: (){onTabPress(index);},
+                        onPressed: () {
+                          onTabPress(index);
+                        },
                         child: AnimatedOpacity(
-                          opacity: _selectedTab==index ?1:0.5,
+                          opacity: _selectedTab == index ? 1 : 0.5,
                           duration: const Duration(milliseconds: 200),
                           child: SizedBox(
                             height: 36,
@@ -86,7 +91,9 @@ class _CustomTabBarState extends State<CustomTabBar> {
                               "assets/rive_app/rive/icons.riv",
                               stateMachines: [icon.stateMachine],
                               artboard: icon.artboard,
-                              onInit: (artboard){_onRiveIconInit(artboard, index);},
+                              onInit: (artboard) {
+                                _onRiveIconInit(artboard, index);
+                              },
                             ),
                           ),
                         ),

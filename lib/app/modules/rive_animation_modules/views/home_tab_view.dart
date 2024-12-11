@@ -64,16 +64,33 @@ class _HomeTabViewState extends State<HomeTabView>
   late AnimationController? _animationController;
   late Animation<double> _slideAnim;
 
+  // void _onMenuIconInit(Artboard artboard) {
+  //   final controller =
+  //       StateMachineController.fromArtboard(artboard, "State Machine");
+  //   artboard.addController(controller!);
+  //   _menuBtn = controller.findInput<bool>("isOpen") as SMIBool;
+  //   _menuBtn.value = true;
+  // }
+  //
+  // void onMenuPress() {
+  //   _menuBtn.change(!_menuBtn.value);
+  //   print("Menu button state: ${_menuBtn.value}");
+  // }
   void _onMenuIconInit(Artboard artboard) {
     final controller =
         StateMachineController.fromArtboard(artboard, "State Machine");
-    artboard.addController(controller!);
-    _menuBtn = controller.findInput<bool>("isOpen") as SMIBool;
-    _menuBtn.value = true;
+    if (controller != null) {
+      artboard.addController(controller);
+      _menuBtn = controller.findInput<bool>("isOpen") as SMIBool;
+      _menuBtn.value = false; // Initialize as closed
+    }
   }
 
   void onMenuPress() {
-    _menuBtn.change(!_menuBtn.value);
+    setState(() {
+      _menuBtn.value = !_menuBtn.value; // Toggle menu state
+      print("Menu button state: ${_menuBtn.value}");
+    });
   }
 
   @override
@@ -100,33 +117,37 @@ class _HomeTabViewState extends State<HomeTabView>
     return Scaffold(
       extendBody: true,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top + 60,
-            bottom: MediaQuery.of(context).padding.bottom),
+        // padding: EdgeInsets.only(
+        //     top: MediaQuery.of(context).padding.top + 60,
+        //     bottom: MediaQuery.of(context).padding.bottom),
         child: Stack(
           children: [
-            // SideMenuModulesView(),
+            const SideMenuModulesView(),
             GestureDetector(
               onTap: onMenuPress,
               child: SafeArea(
-                  child: Container(
-                width: 44,
-                height: 44,
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: RiverAppTheme.shadow.withOpacity(0.2),
-                      blurRadius: 5,
-                      offset: const Offset(0, 5))
-                ]),
-                child: RiveAnimation.asset(
-                  'assets/rive_app/rive/menu_button.riv',
-                  stateMachines: ["State Machine"],
-                  animations: ["open", "close"],
-                  onInit: _onMenuIconInit,
+                child: Container(
+                  width: 44,
+                  height: 44,
+                  margin: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: RiverAppTheme.shadow.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: RiveAnimation.asset(
+                    'assets/rive_app/rive/menu_button.riv',
+                    stateMachines: const ["State Machine"],
+                    animations: const ["open", "close"],
+                    onInit: _onMenuIconInit,
+                  ),
                 ),
-              )),
-            )
+              ),
+            ),
           ],
         ),
       ),
