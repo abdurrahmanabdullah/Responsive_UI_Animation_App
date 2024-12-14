@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ml_flutter_project/app/modules/rive_animation_modules/views/home_tab_view.dart';
 import 'package:ml_flutter_project/app/modules/rive_animation_modules/views/home_tab_view.dart';
+import 'package:ml_flutter_project/app/modules/rive_animation_modules/views/root_screen.dart';
 
 
 
@@ -61,7 +62,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BOTOMNAVIGATION,
-      page: () => const HomeTabView(),
+      page: () => const RootScreen(),
       binding: SideMenuModulesBinding(),
     ),
 

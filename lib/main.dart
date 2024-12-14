@@ -10,7 +10,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       title: "Responsive Web and Mobile App",
       initialRoute: AppPages.BOTOMNAVIGATION,
-      // initialRoute: AppPages.SIDE_MENU_MODULES,
+      //  initialRoute: AppPages.SIDE_MENU_MODULES,
       getPages: AppPages.routes,
     ),
   );

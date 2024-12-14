@@ -21,13 +21,24 @@ class _CustomTabBarState extends State<CustomTabBar> {
   void _onRiveIconInit(Artboard artboard, index) {
     final controller = StateMachineController.fromArtboard(
         artboard, icons[index].stateMachine);
-    artboard.addController(controller!);
+
+    if (controller == null) {
+      print("Error: StateMachineController for '${icons[index].stateMachine}' not found.");
+      return;
+    }
+
+    artboard.addController(controller);
     icons[index].status = controller.findInput<bool>("active") as SMIBool;
 
     ///findInput method attempts to locate the input within the state machine and return it
   }
 
   void onTabPress(int index) {
+    if (icons[index].status == null) {
+      // Prevent action if the status is not initialized
+      print("Status for icon $index is not initialized.");
+      return;
+    }
     setState(() {
       _selectedTab = index;
     });
@@ -84,17 +95,31 @@ class _CustomTabBarState extends State<CustomTabBar> {
                         child: AnimatedOpacity(
                           opacity: _selectedTab == index ? 1 : 0.5,
                           duration: const Duration(milliseconds: 200),
-                          child: SizedBox(
-                            height: 36,
-                            width: 36,
-                            child: RiveAnimation.asset(
-                              "assets/rive_app/rive/icons.riv",
-                              stateMachines: [icon.stateMachine],
-                              artboard: icon.artboard,
-                              onInit: (artboard) {
-                                _onRiveIconInit(artboard, index);
-                              },
-                            ),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.center,
+                            children: [
+                              Positioned(
+                                top:-4,
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 200),
+                                  height: 4,
+                                  width: _selectedTab==index ? 20:0,
+                                  decoration: const BoxDecoration(color: RiverAppTheme.accentColor),
+                                ),
+                              ),
+                         SizedBox(
+                              height: 36,
+                              width: 36,
+                              child: RiveAnimation.asset(
+                                "assets/rive_app/rive/icons.riv",
+                                stateMachines: [icon.stateMachine],
+                                artboard: icon.artboard,
+                                onInit: (artboard) {
+                                  _onRiveIconInit(artboard, index);
+                                },
+                              ),
+                            ),]
                           ),
                         ),
                       );
