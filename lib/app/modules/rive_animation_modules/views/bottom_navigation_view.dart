@@ -102,7 +102,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
                               Positioned(
                                 top:-4,
                                 child: AnimatedContainer(
-                                  duration: Duration(milliseconds: 200),
+                                  duration: const Duration(milliseconds: 200),
                                   height: 4,
                                   width: _selectedTab==index ? 20:0,
                                   decoration: const BoxDecoration(color: RiverAppTheme.accentColor),

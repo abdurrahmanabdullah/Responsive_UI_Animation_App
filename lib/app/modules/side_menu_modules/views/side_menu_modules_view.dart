@@ -61,68 +61,70 @@ class _SideMenuModulesViewState extends State<SideMenuModulesView> {
             bottomRight: Radius.circular(30),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          ///by default it will center that's why make it start
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.2),
-                    foregroundColor: Colors.white,
-                    child: const Icon(Icons.person_outline),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Abdullah",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontFamily: "Inter",
-                          decoration: TextDecoration.none,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+          
+            ///by default it will center that's why make it start
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white.withOpacity(0.2),
+                      foregroundColor: Colors.white,
+                      child: const Icon(Icons.person_outline),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Abdullah",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontFamily: "Inter",
+                            decoration: TextDecoration.none,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Software Engineer",
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
-                          fontSize: 15,
-                          fontFamily: "Inter",
-                          decoration: TextDecoration.none,
-                        ),
-                      )
-                    ],
-                  )
-                ],
+                        Text(
+                          "Software Engineer",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.7),
+                            fontSize: 15,
+                            fontFamily: "Inter",
+                            decoration: TextDecoration.none,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            MenuButtonSection(
-              selectedMenu: _selectedMenu,
-              onMenuPress: _onMenuPress,
-              title: 'BROWSE',
-              menuIcons: _browseMenuIcons,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            MenuButtonSection(
-              selectedMenu: _selectedMenu,
-              onMenuPress: _onMenuPress,
-              title: 'HISTORY',
-              menuIcons: _historyMenuIcons,
-            )
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              MenuButtonSection(
+                selectedMenu: _selectedMenu,
+                onMenuPress: _onMenuPress,
+                title: 'BROWSE',
+                menuIcons: _browseMenuIcons,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              MenuButtonSection(
+                selectedMenu: _selectedMenu,
+                onMenuPress: _onMenuPress,
+                title: 'HISTORY',
+                menuIcons: _historyMenuIcons,
+              )
+            ],
+          ),
         ),
       ),
     );
